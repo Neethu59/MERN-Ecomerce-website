@@ -1,0 +1,13 @@
+const express=require('express')
+const cors=require('cors')
+const router = require('./Router/testrouter')
+const dotenv=require('dotenv')
+const connection = require('./Config/mongo')
+connection()
+const app=express()
+app.use(express.json())
+app.use(cors())
+app.use('/',router)
+dotenv.config()
+const port=process.env.port||6000
+app.listen(port,()=>console.log(`${port}`))
